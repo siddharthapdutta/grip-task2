@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    All Users
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Current Credits</th>
+            <th></th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.credits }}</td>
+                <form method="post"> {% csrf_token %}
+                    <td><button name="userID" value={{ user.id }}>Select User</button></td>
+                </form>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
